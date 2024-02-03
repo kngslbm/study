@@ -42,15 +42,14 @@ closet = ['shirt','pants','tie','belt','socks']
 
 for clothes in closet:
     print(clothes)
+
+#output
+# shirt
+# pants
+# tie
+# belt
+# socks
 ```
-
-결과:
-
-shirt  
-pants  
-tie  
-belt  
-socks
 
 리스트의 모든 요소를 한번씩 가져온다.
 
@@ -173,18 +172,11 @@ shirt=70
 pants=80
 set=100
 
-buy_clothes(150)
-buy_clothes(85)
-buy_clothes(70)
-buy_clothes(50)
+buy_clothes(150)  #output i'll buy a set.
+buy_clothes(70)   #output i'll buy a shirt.
+buy_clothes(50)   #output I don't have enough money.
+buy_clothes(85)   #output i'll buy a pants.
 ```
-
-결과:
-
-i'll buy a set.  
-i'll buy a pants.  
-i'll buy a shirt.  
-I don't have enough money.
 
 입력한 값에 따라 함수 내 미리 짜여진 조건문이 동작하여 알맞은 값을 출력한다.
 
@@ -202,16 +194,10 @@ def buy_shirt(money):
     else:
         print("you don't have enough money")
 
-buy_shirt(150)
-buy_shirt(70)
-buy_shirt(50)
+buy_shirt(150) #output change : 80
+buy_shirt(70)  #output change : 0
+buy_shirt(50)  #output you don't have enough money
 ```
-
-결과:
-
-change : 80  
-change : 0  
-you don't have enough money
 
 return 으로 함수를 통해 도출된 값을 돌려줄 수 있다.
 
@@ -235,14 +221,9 @@ def check_gender(pin):
     else:
         print("male")
 
-check_gender("900101-2234567")
-check_gender("200101-3012345")
+check_gender("900101-2234567") #output female
+check_gender("200101-3012345") #output male
 ```
-
-결과:
-
-female  
-male
 
 ---
 
@@ -260,11 +241,9 @@ list 를 a 변수에 집합으로 만들고 a 를 출력하면 중복된 과일�
 list = ["apple", "banana", "orange", "grape", "kiwi", "kiwi", "melon", "strawberry", "banana", "grape"]
 a = set(list)
 print(a)
+
+#output {'strawberry', 'grape', 'orange', 'apple', 'banana', 'kiwi', 'melon'}
 ```
-
-결과:
-
-{'strawberry', 'grape', 'orange', 'apple', 'banana', 'kiwi', 'melon'}
 
 ---
 
@@ -283,12 +262,11 @@ b = set(animal_list2)
 
 print(a & b)
 print(a | b)
+
+#output
+#{'giraffe', 'elephant'}
+#{'tiger', 'giraffe', 'zebra', 'panda', 'koala', 'kangaroo', 'lion', 'elephant', 'monkey', 'cheetah', 'snake', 'leopard'}
 ```
-
-결과:
-
-{'giraffe', 'elephant'}  
-{'tiger', 'giraffe', 'zebra', 'panda', 'koala', 'kangaroo', 'lion', 'elephant', 'monkey', 'cheetah', 'snake', 'leopard'}
 
 ---
 
@@ -305,11 +283,9 @@ animal_list2 = ["elephant", "giraffe", "monkey", "snake", "kangaroo", "koala", "
 cha = set(animal_list1) - set(animal_list2)
 
 print(cha)
+
+#output {'lion', 'leopard', 'cheetah', 'tiger', 'zebra'}
 ```
-
-결과:
-
-{'lion', 'leopard', 'cheetah', 'tiger', 'zebra'}
 
 ---
 
@@ -338,17 +314,16 @@ for dic in dictionary_list:
     name = dic["name"]
     age = dic["age"]
     print(f"{name}is {age} years old")
+
+#output
+# Aliceis 30 years old
+# Bobis 25 years old
+# Charlieis 35 years old
+# Davidis 40 years old
+# Evais 28 years old
+# Frankis 45 years old
+# Graceis 33 years old
 ```
-
-결과:
-
-Aliceis 30 years old  
-Bobis 25 years old  
-Charlieis 35 years old  
-Davidis 40 years old  
-Evais 28 years old  
-Frankis 45 years old  
-Graceis 33 years old
 
 ---
 
@@ -378,17 +353,16 @@ for dic in dictionary_list:
         print(f"{name}is {age} years old")
     except:
         print(f"{name}'s age is unknown")
+
+#output
+# Aliceis 30 years old
+# Bobis 25 years old
+# Charlieis 35 years old
+# Davidis 40 years old
+# Eva's age is unknown
+# Frankis 45 years old
+# Graceis 33 years old
 ```
-
-결과:
-
-Aliceis 30 years old  
-Bobis 25 years old  
-Charlieis 35 years old  
-Davidis 40 years old  
-Eva's age is unknown  
-Frankis 45 years old  
-Graceis 33 years old
 
 ---
 
@@ -490,7 +464,8 @@ def kidoradult(person):
 result = list(map(kidoradult, people))
 
 print(result)
-# 출력 ['adult', 'kid', 'adult', 'adult', 'kid', 'adult', 'kid']
+
+#output ['adult', 'kid', 'adult', 'adult', 'kid', 'adult', 'kid']
 ```
 
 if 문을 삼항연산자로 쓰면 더 간단해 진다.
@@ -502,7 +477,8 @@ def kidoradult(person):
 result = list(map(kidoradult, people))
 
 print(result)
-# 출력 ['adult', 'kid', 'adult', 'adult', 'kid', 'adult', 'kid']
+
+#output ['adult', 'kid', 'adult', 'adult', 'kid', 'adult', 'kid']
 ```
 
 lambda 함수를 사용하면 더더욱 간단하게 쓸 수도 있다.
@@ -515,7 +491,8 @@ lambda 함수는 익명 함수를 만드는 방법으로, 이름이 없고 한 �
 result = list(map(lambda x : "kid" if x["age"] < 20 else "adult", people))
 
 print(result)
-# 출력 ['adult', 'kid', 'adult', 'adult', 'kid', 'adult', 'kid']
+
+#output ['adult', 'kid', 'adult', 'adult', 'kid', 'adult', 'kid']
 ```
 
 list 에서 kid 나 adult 만을 출력하려면 filter 함수를 사용하면 된다.
@@ -528,7 +505,93 @@ filter 함수는 주어진 함수에서 True 를 반환하는 요소 만을 데�
 result = list(filter(lambda x : x["age"] < 20, people))
 
 print(result)
-# 출력 [{'name': 'Bob', 'age': 15, 'city': 'Los Angeles'}, {'name': 'Eva', 'age': 18, 'city': 'San Francisco'}, {'name': 'Grace', 'age': 13, 'city': 'Boston'}]
+
+#output [{'name': 'Bob', 'age': 15, 'city': 'Los Angeles'}, {'name': 'Eva', 'age': 18, 'city': 'San Francisco'}, {'name': 'Grace', 'age': 13, 'city': 'Boston'}]
 ```
 
 kid 로 분류됐던 age 가 20 미만인 사람들만 출력된다.
+
+---
+
+## 매개변수의 다양한 지정법
+
+함수에 인수를 넣을 때, 몇 가지 방법으로 매개변수를 지정할 수 있다.
+
+```py
+def cal(a, b):
+    return a + b*2
+
+print(cal(2,3))
+
+#output 8
+```
+
+위와 같은 함수에서 어떤 인수를, 어떤 매개변수에 넣을 지를 순서에 상관없이 특정할 수 있다.
+
+```py
+def cal(a, b):
+    return a + b*2
+
+print(cal(b=2,a=3))
+
+#output 7
+```
+
+---
+
+매개변수의 디폴트 값을 지정할 수도 있다.
+
+```py
+def cal(a, b=2):
+    return a + b*2
+
+print(cal(3))
+
+#output 7
+```
+
+이때, 디폴트 값을 지정한 매개변수는 그렇지 않은 매개변수의 앞에 위치할 수 없다.
+
+즉 왼쪽의 함수는 오류가 있는 함수이며 오른쪽과 같이 정의하는 것이 올바르다.
+
+```py
+def cal(a=3, b):                   def cal(b, a=3):
+    return a + b*2                     return a + b*2
+
+
+print(cal(2))                      print(cal(2))
+
+#output error                      #output 7
+```
+
+---
+
+매개변수의 갯수를 미리 정하지 않고 입력받은 인수를 모두 받을 수도 있다.
+이때 통상적으로 args 를 쓴다.
+
+```py
+def greet(*args):
+    for arg in args:
+        print(f"{arg}, How are you?")
+
+greet("james", "lebron", "stephen")
+
+#output
+# james, How are you?
+# lebron, How are you?
+# stephen, How are you?
+```
+
+키워드 인수를 받을 수도 있다.
+
+```py
+def greet(**kwargs):
+    print(kwargs)
+
+greet(first = "lebron", last = "james")
+greet(first = "stephen", last = "curry")
+
+#output
+# {'first': 'lebron', 'last': 'james'}
+# {'first': 'stephen', 'last': 'curry'}
+```
