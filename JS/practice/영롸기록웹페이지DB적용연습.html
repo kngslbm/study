@@ -59,37 +59,51 @@
             width: 100%;
         }
     </style>
-    <script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBEyDRRNcUv0tXxl9a5XK6pbEid60a9i7A",
+            authDomain: "slbm-6d65c.firebaseapp.com",
+            projectId: "slbm-6d65c",
+            storageBucket: "slbm-6d65c.appspot.com",
+            messagingSenderId: "658896919313",
+            appId: "1:658896919313:web:f6cd90292c80c3b2f54ab0",
+            measurementId: "G-00T5CC35CT"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         $("#postingbtn").click(async function () {
             let image = $('#image').val();
             let title = $('#title').val();
             let star = $('#star').val();
             let comment = $('#comment').val();
+            let doc = {
+                'image': image,
+                'title': title,
+                'star': star,
+                'comment': comment
+            };
+            await addDoc(collection(db, "movies"), doc);
+            alert("기록 되었습니다");
+            window.location.reload();
         })
 
-        $(document).ready(function () {
-        let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
-        fetch(url).then(res => res.json()).then(data => {
-            let temperature = data['temp'];
-            let temp_html = ``;
-            if (temperature > 19) {
-                temp_html = `따뜻해요`;
-            } else {
-                temp_html = `쌀쌀해요`;
-            }
-            $('#seoulTemperature').text(temp_html);
-        })
-        })
+        let docs = await getDocs(collection(db, "movies"));
+        docs.forEach((doc) => {
+            let row = doc.data();
 
-        function openclose() {
-            $('#postingbox').toggle();
-        }
-
-        function makeCard() {
-            let image = $('#image').val()
-            let title = $('#title').val()
-            let comment = $('#comment').val()
-            let star = $('#star').val()
+            let image = row['image'];
+            let title = row['title'];
+            let comment = row['comment'];
+            let star = row['star']
             let temp_html = `<div class="col">
                 <div class="card h-100">
                     <img src="${image}"
@@ -101,8 +115,24 @@
                     </div>
                 </div>
             </div>`
-            $(cardList).append(temp_html)
-        }
+            $('#cardList').append(temp_html)
+        });
+
+        let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
+        fetch(url).then(res => res.json()).then(data => {
+            let temperature = data['temp'];
+            let temp_html = ``;
+            if (temperature > 19) {
+                temp_html = `따뜻해요`;
+            } else {
+                temp_html = `쌀쌀해요`;
+            }
+            $('#seoulTemperature').text(temp_html);
+        })
+
+        $("#moviesAdd").click(async function () {
+            $('#postingbox').toggle();
+        });
     </script>
 </head>
 
@@ -141,7 +171,7 @@
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">영화 기록</h1>
                 <p class="col-md-8 fs-4"></p>
-                <button onclick="openclose()" type="button" class="btn btn-outline-light">영화 기록하기</button>
+                <button id="moviesAdd" type="button" class="btn btn-outline-light">영화 기록하기</button>
             </div>
         </div>
     </div>
@@ -169,7 +199,7 @@
             <input type="email" class="form-control" id="comment" placeholder="영화 코멘트">
             <label for="floatingInput">영화 코멘트</label>
         </div>
-        <button onclick="makeCard()" type="button" class="btn btn-light">기록하기</button>
+        <button id="postingbtn" type="button" class="btn btn-light">기록하기</button>
     </div>
     <div class="myCards">
         <div id="cardList" class="row row-cols-1 row-cols-md-4 g-4">
