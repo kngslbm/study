@@ -595,3 +595,52 @@ greet(first = "stephen", last = "curry")
 # {'first': 'lebron', 'last': 'james'}
 # {'first': 'stephen', 'last': 'curry'}
 ```
+
+---
+
+## Class 와 Instance
+
+class 는 객체를 만드는 템플릿이며, class 로 만들어진 실제 객체를 instance 라고 한다.
+
+class 에는 속성과 메서드를 담을 수 있다.
+
+속성은 객체의 상태를 나타내는 변수이고
+
+메서드는 동작을 나타내는 함수이다.
+
+예를 들어 "사람" 이라는 클래스를 만들고,
+
+이름과 체력 같은 "속성"을 주고 걷기나 먹기 같은 "동작"을 줄 수 있다.
+
+```py
+class person:
+    def __init__(self, name, stamina):
+        self.name = name
+        self.stamina = stamina
+
+    def walk(self):
+        self.stamina = self.stamina - 10
+        print(f"{self.name} is walking")
+        print(f"stamina : {self.stamina}")
+    
+    def eat(self):
+        self.stamina = self.stamina + 10
+        print(f"{self.name} is eating")
+        print(f"stamina : {self.stamina}")
+
+person1 = person("lebron", 100)
+person2 = person("curry", 100)
+
+person1.walk()
+person2.eat()
+
+
+#output
+# lebron is walking
+# stamina : 90
+# curry is eating
+# stamina : 110
+```
+
+
+
