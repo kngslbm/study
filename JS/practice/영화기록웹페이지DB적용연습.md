@@ -4,15 +4,16 @@
 
 현재 '영화기록' web page' 첫 화면
 
-[##_Image|kage@dU2lSY/btsDsZ2uifz/O8Dx3JKlSUz8DE31f3Eupk/img.png|CDM|1.3|{"originWidth":843,"originHeight":911,"style":"widthContent","filename":"캡처.PNG"}_##]
+![home](https://github.com/kngslbm/study/assets/148850117/6ba8b446-8501-426a-8c38-9557741087b4)
+
 
 postingbox를 통해 새로운 영화기록을 남겨도
 
-[##_Image|kage@bDSkCR/btsDrlEWFhu/wBvCVIdIKckB2YXePta4KK/img.png|CDM|1.3|{"originWidth":843,"originHeight":919,"style":"alignCenter","filename":"영화기록 완성.PNG"}_##]
+![영화기록 완성](https://github.com/kngslbm/study/assets/148850117/24bb2d58-f09a-4f48-835d-71b511dcdf1c)
 
 page를 새로고침하면 data가 사라진다.
 
-[##_Image|kage@dxiDj8/btsDqiom5mA/S8l3Bafi0SyCx5KdFeZFS0/img.png|CDM|1.3|{"originWidth":843,"originHeight":911,"style":"alignCenter","filename":"캡처.PNG"}_##]
+![home](https://github.com/kngslbm/study/assets/148850117/6ba8b446-8501-426a-8c38-9557741087b4)
 
 page에 일시적으로 data를 추가한 것이지 따로 data를 저장하는 곳이 없기 때문이다.
 
@@ -24,7 +25,8 @@ Data Base라는 창고를 만들고 web page에 적용 시켜, data가 휘발되
 
 일단 FIrebase에서 나의 DB를 만든다.
 
-[##_Image|kage@kCoHA/btsDqLDQU8W/hhBgFSSmKEsdLuleNHeugK/img.png|CDM|1.3|{"originWidth":1893,"originHeight":783,"style":"alignCenter","filename":"firebase.PNG"}_##]
+![firebase](https://github.com/kngslbm/study/assets/148850117/d4b0ee31-75a4-4ddd-9eb1-042a5bd74bcb)
+
 
 먼저 DB를 사용하기 위해서는 script 태그의 type을 "module"로 지정해야한다.
 
@@ -98,11 +100,13 @@ $("#postingbtn").click(async function () {
 
 입력한 data가 DB에 저장되는지 확인한다.
 
-[##_Image|kage@pEZHn/btsDsYWOf0d/8DLvQkXeqeTJep1X7gNbX1/img.jpg|CDM|1.3|{"originWidth":848,"originHeight":910,"style":"alignCenter","filename":"Inkeddb테스트_LI.jpg"}_##]
+![Inkeddb테스트_LI](https://github.com/kngslbm/study/assets/148850117/5c7a7997-0f30-4ab1-a933-274341cf6802)
+
 
 잘 저장되었다.
 
-[##_Image|kage@FSmMk/btsDom6eXfS/lyMNYjOQzj1wXBQ9KkLXF0/img.png|CDM|1.3|{"originWidth":1152,"originHeight":521,"style":"alignCenter","filename":"db저장됨.PNG"}_##]
+![db저장됨](https://github.com/kngslbm/study/assets/148850117/2eb50bb2-06a4-4458-8fae-8f480291592b)
+
 
 새로운 데이터가 저장되면 알림을 띄우고 page를 리로드 하는 코드를 추가한다.
 
@@ -126,7 +130,9 @@ $("#postingbtn").click(async function () {
 
 잘 작동한다.
 
-[##_Image|kage@pGpDY/btsDpv2Wj7A/I6wfYRbu3dyIgsrvzI7KHK/img.png|CDM|1.3|{"originWidth":852,"originHeight":907,"style":"alignCenter","filename":"알림 테스트.PNG"}_##]
+![알림 테스트](https://github.com/kngslbm/study/assets/148850117/b7b32b1b-0805-4c1d-a600-051607706ced)
+
+
 
 DB에서 저장된 data를 가져와 새로운 카드를 만들게 한다.
 
@@ -238,10 +244,12 @@ $("#moviesAdd").click(async function () {
 ```
 완성.
 
-[##_Image|kage@bd2S8x/btsDp8l5Gd7/KE8s9vfvIGYzJWXkrf8fkk/img.png|CDM|1.3|{"originWidth":848,"originHeight":944,"style":"alignCenter","filename":"db 연결 성공.PNG"}_##]
+![db 연결 성공](https://github.com/kngslbm/study/assets/148850117/23cf5767-cd12-4729-97cd-12199b7d27c6)
+
 
 page를 새로고침해도 영화카드들이 사라지지 않는다.
 
 data들이 DB에 잘 저장되었고 page가 data를 가져올 수 있기 때문이다.
 
-[##_Image|kage@uAfr7/btsDqgKU3Jp/7EYYOrUKQ1fYpSVq5ERaxk/img.png|CDM|1.3|{"originWidth":1146,"originHeight":605,"style":"alignCenter","filename":"db 잘작동.PNG"}_##]
+![db 잘작동](https://github.com/kngslbm/study/assets/148850117/ddde8811-0702-49ee-b5f4-3ab2ae85da0e)
+
