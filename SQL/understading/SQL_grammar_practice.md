@@ -255,9 +255,43 @@ HAVING은 GROUP BY 로 그룹화된 데이터를 필터링 할 때 사용된다.
 예를 들어 type 별 평균 가격이 100 이상인 데이터만 가져오려면 아래와 같다.
 
 ```sql
-select type,   
-       avg(price) avg_price_by_type   
+select type,
+       avg(price) avg_price_by_type
 from orders
 group by type
 having avg(price)>100;
 ```
+
+---
+
+## REPLACE
+
+REPLACE 함수를 사용하여 특정 문자를 다른 문자로 바꿀수 있다.
+
+예를 들어 김포가 서울에 편입되어 addr 칼럼에 저장된 주소 데이터를 변경해야된다면 아래와 같다.
+
+```sql
+select addr "원래 주소",
+       replace(addr, "김포", "서울") "바뀐 주소"
+from 테이블
+where addr like "%김포%";   # 바뀐 주소들만 보여주기 위한 조건 구문
+```
+
+---
+
+## SUBSTRING
+
+SUBSTRING 함수를 사용하면 데이터 전체가 아닌 특정 부분의 문자만을 조회할 수도 있다.
+
+예를 들어 addr 칼럼에 " 서울시 강남구 논현동 ", " 부산시 금정구 남산동 " 식의 주소 데이터가 있는데,
+
+"서울", "부산" 식의 어떤 지역인지에 대해서만 데이터를 가져온다면 아래와 같다.
+
+```sql
+select substr(addr, 1, 2)  # substring, substr 둘다 가능(칼럼명, 시작위치, 글자수)
+from 테이블;
+```
+
+---
+
+## CONCAT
