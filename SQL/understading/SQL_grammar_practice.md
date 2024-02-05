@@ -220,11 +220,11 @@ ORDER BY 를 사용하면 가져온 데이터들을 정렬할 수 있다.
 예를 들어 위에서 가져온 type 별 평균가격을 정렬하여 가져오려면 아래와 같다.
 
 ```sql
-select type,   
-       avg(price) avg_price_by_type   
+select type,
+       avg(price) avg_price_by_type
 from orders
-group by type   
-order by avg(price)   #오름차순 정렬 
+group by type
+order by avg(price)   #오름차순 정렬
 ----------------------------------------
 order by avg(price) desc   #내림차순 정렬
 ```
