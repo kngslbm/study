@@ -338,6 +338,94 @@ CASE 구문은 여러 개의 조건을 걸고 그에 따른 각각의 결과를 
 select case when type="food" then "음식"
        case when type="clothes" then "의류"
        case when type="electronic" then "전자제품"
-       else "기타" end   # 구문을 끝낼 때는 " end "를 써줘야 한다. 
+       else "기타" end   # 구문을 끝낼 때는 " end "를 써줘야 한다.
 from orders;
 ```
+
+---
+
+## CAST
+
+일반적으로 데이터베이스 시스템은 다양한 형태의 데이터 타입을 지원한다. ( 문자, 숫자, 날짜 등 )
+
+cast 함수를 사용하면 데이터 타입을 변환할 수 있다.
+
+예를 들어 "123" 이라는 문자열을 숫자로 변환하려면 아래와 같다.
+
+```sql
+select cast("123" as int);   # cast(변환할 값 as 변환할 데이터 타입)
+```
+
+as 뒤에 오는 데이터 타입은 사용하는 데이터베이스 매니지먼트 시스템에 따라 지원하는 데이터 타입이 다를 수 있기 때문에 해당 시스템 문서를 참조하는 것이 좋다.
+
+---
+
+## SUBQUERY
+
+SubQuery는 하나의 Query 문에 들어가 있는 또 다른 Query 문을 말한다.
+
+서브쿼리를 사용하면 복잡한 검색이나 필터링이 가능하고 유연성과 가독성을 향상시킬 수 있다.
+
+서브쿼리는 주로 두가지 경우, "필터링 조건으로써" 혹은 "결과의 집합으로써" 사용된다.
+
+---
+
+예를 들어 orders1 테이블에서 주문 금액이 100보다 큰 고객을 선별하여,
+
+orders2 테이블에서 동일한 고객의 주문을 조회하려면 아래와 같다.
+
+```sql
+# 필터링 조건으로써 서브쿼리
+select *
+from orders2
+where customer = (select customer from orders1 where price > 100);
+```
+
+---
+
+그리고 예를 들어 2024년 2월 6일 이후 주문건에 대해서만 선별을 하고,
+
+해당 주문들의 평균 주문금액을 구하려면 아래와 같다.
+
+```sql
+# 결과의 집합으로써 서브쿼리
+select avg(price) recent_avg_price
+from(
+     select *
+     from orders1
+     where order_date > "2024-02-06"
+    ) recent_orders
+```
+
+---
+
+## JOIN
+
+join 을 사용하면 두 개 이상의 테이블에서 데이터를 함께 검색하고 결합하여 조회할 수 있다.
+
+주로 관계형 데이버베이스에서 많이 사용된다.
+
+다양한 유형의 join 이 있지만 가장 일반적인 유형은 아래 그림을 보면 이해하기 쉽다.
+
+그림
+
+left join 또는 right join 은 해당하는 한 쪽 테이블의 모든 행을 반환하고 나머지 한쪽에서 일치하는 행이 있다면 반환한다. 값이 없을 경우 NULL 로 채워진다.
+
+inner join 은 두 테이블 간에 일치하는 행만 반환한다.
+
+full join 은 양쪽 테이블의 모든 행을 반환하고 일치하는 행이 있다면 역시 반환한다. 일치하지 않는 데이터의 값은 NULL 로 채워진다.
+
+그 외에도 두 테이블의 가능한 조합을 모두 반환하는 cross join 도 있다. 이 경우 두 테이블의 행을 곱한 수만큼의 결과가 나온다.
+
+---
+
+예를 들어 orders 테이블과 payments 테이블에서 고객명이 일치하는 데이터만 조회하려면 아래와 같다.
+
+```sql
+select *
+from orders a inner join payments b on a.customer = b.customer
+
+# 형식은 (테이블 join유형 join 테이블 on 공통칼럼 = 공통칼럼) 
+# join 을 사용할 떄 칼럼은 (테이블.칼럼) 형식으로 써야함
+```
+
