@@ -214,6 +214,16 @@ group by type;   # 원하는 범주가 될 칼럼
 
 ---
 
+group by 에 아래와 같이 숫자를 쓸 수도 있다.
+
+```sql
+group by 1, 2  # 첫번 째, 두번 째 칼럼을 그룹화
+```
+
+select 에서 선택한 칼럼을 순서대로 지정하는 것이다.
+
+---
+
 ## ORDER BY
 
 ORDER BY 를 사용하면 가져온 데이터들을 정렬할 수 있다.
@@ -295,3 +305,39 @@ from 테이블;
 ---
 
 ## CONCAT
+
+CONCAT 을 사용하면 여러 칼럼에서 원하는 문자를 가져와 조합하여 사용할 수도 있다.
+
+예를 들어 addr 칼럼의 지역명과 restaurant 칼럼의 음식점 이름을 붙여서 출력하려면 아래와 같다.
+
+```sql
+select concat("[", substr(addr,1,2),"]",restaurant)   # [지역]음식점이름
+from 테이블;
+```
+
+---
+
+## IF , CASE
+
+조건에 따라 특정 방법을 적용시키고 싶을 때 IF 와 CASE 를 사용할 수 있다.
+
+예를 들어 IF 구문을 사용해 order 라는 칼럼에서 type 이 food 인 데이터는 "음식"으로 출력하고,
+나머지는 "기타"라고 출력하고 싶다면 아래와 같다.
+
+```sql
+select if(type="food", "음식", "기타")   #if(조건, True일 경우, False일 경우)
+from orders;
+```
+
+CASE 구문은 여러 개의 조건을 걸고 그에 따른 각각의 결과를 반환하기 위해서 쓰인다.
+
+예를 들어 type에 따라 다른 조건과 각각의 결과를 반환하게 하고,
+어느 조건에도 해당하지 않으면 "기타"를 반환하게 하려면 아래와 같다.
+
+```sql
+select case when type="food" then "음식"
+       case when type="clothes" then "의류"
+       case when type="electronic" then "전자제품"
+       else "기타"
+from orders;
+```
