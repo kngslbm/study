@@ -338,6 +338,6 @@ CASE 구문은 여러 개의 조건을 걸고 그에 따른 각각의 결과를 
 select case when type="food" then "음식"
        case when type="clothes" then "의류"
        case when type="electronic" then "전자제품"
-       else "기타"
+       else "기타" end   # 구문을 끝낼 때는 " end "를 써줘야 한다. 
 from orders;
 ```
