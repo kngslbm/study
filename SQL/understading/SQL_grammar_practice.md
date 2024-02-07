@@ -460,7 +460,7 @@ coalesce 는 NULL 값을 다른 값으로 대체할 떄 사용되는 함수이�
 payments 테이블에 고객 정보가 없을 경우 NULL 값 대신 "Unknown" 이 반환되게 하려면 아래와 같다.
 
 ```sql
-select coalesce(b.customer, "Unknown")   #coalesce(칼럼, 대체값)
+select coalesce(b.customer, "Unknown")              #coalesce(칼럼, 대체값)
 from orders a left join payments b on a.customer = b.customer;
 ```
 
@@ -473,9 +473,9 @@ from orders a left join payments b on a.customer = b.customer;
 ```sql
 select avg(if (rating<>"Not given", rating, null))   # "Not given" 값은 제외시키고 평균값 계산
 from (
-       select cast(rating as int)   # rating 칼럼을 숫자형을 변경
+       select cast(rating as int)                    # rating 칼럼을 숫자형을 변경
        from orderss
-     ) a
+     ) a;
 ```
 
 위에 처럼 Query 문 안에서 NULL 값을 필요에 따라 사용할 수도 있다.
