@@ -460,7 +460,7 @@ coalesce 는 NULL 값을 다른 값으로 대체할 떄 사용되는 함수이�
 payments 테이블에 고객 정보가 없을 경우 NULL 값 대신 "Unknown" 이 반환되게 하려면 아래와 같다.
 
 ```sql
-select coalesce(b.customer, "Unknown")              #coalesce(칼럼, 대체값)
+select coalesce(b.customer, "Unknown")    # coalesce(칼럼, 대체값)
 from orders a left join payments b on a.customer = b.customer;
 ```
 
@@ -482,7 +482,7 @@ from (
 
 ---
 
-## Pivot Table
+## PIVOT TABLE
 
 pivot table 은 두 개 이상의 기준으로 데이터가 집계된 표를 말한다.
 
@@ -500,9 +500,56 @@ select seller,
        ...
 from(
      select seller,
-              substr(order_date,9,2) day,   # substr으로 일(day)에 해당하는 데이터 선별.
-              count(1) cnt
+            substr(order_date,9,2) day,     # substr으로 일(day)에 해당하는 데이터 선별.
+            count(1) cnt
      from orders
-    )a                                      #subQuery 로 계산 결과를 다시 사용
+    )a                                      # subQuery 로 계산 결과를 다시 사용
 order by 2 desc;                            # day1 주문량이 많은 순으로 정렬
 ```
+
+---
+
+## WINDOW FUNCTION
+
+윈도우 함수는 데이터 집합에 창을 형성해 연산하는 특별한 종류의 함수들이다.
+
+핵심 개념은 "파티션"을 통해 데이터를 나누고 함수를 적용할 수 있다는 것과,
+
+"정렬"이 가능해 데이터의 순차적 연산이 가능하다는 것이다.
+
+> 추가로 현재 행을 기준으로 앞 뒤와의 관계를 이해하고, 이전행과 다음행의 범위를 정의하여 함수가 데이터를 어떻게 처리할 지를 결정하는 "프레임"이라는 개념이 있다. (프레임에 대해서는 아직 개념을 완전히 이해하지는 못해서 부정확할 수 있다. 이후 완전히 이해하게 된다면 수정될 수도 있다.)
+
+예를 들어 "RANK" 라는 윈도우 함수를 사용하여 orders 라는 테이블에서 type 별로 seller 의 순위를 조회하면 아래와 같다.
+
+```sql
+select type,     # 형식 : window_function(argument) over (partition by 칼럼 order by 정렬 기준)
+       seller,
+       rank() over (partition by type           # partition by ~ : ~ 별로 파티션을 나누어 rank 함수를 적용
+                    order by cnt desc) "순위"   # order by ~ : 정렬 기준
+from(
+     select type,
+            seller,
+            count(1) cnt
+     from orders
+     group by 1, 2
+    ) a;
+```
+
+---
+
+또 다른 예로 윈도우 함수 "SUM" 을 이용하여 orders 라는 테이블에서 type별 누적 주문량을 구하려면 아래와 같다.
+
+```sql
+select type,
+       seller,
+       sum(cnt) over (patition by type order by cnt) "누적 주문량"
+from (
+      select type,
+             seller,
+             count(1) cnt
+      from orders
+      group by 1, 2
+     ) a;
+```
+
+---
