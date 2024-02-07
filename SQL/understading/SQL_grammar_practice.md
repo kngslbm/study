@@ -329,6 +329,8 @@ select if(type="food", "음식", "기타")   #if(조건, True일 경우, False�
 from orders;
 ```
 
+---
+
 CASE 구문은 여러 개의 조건을 걸고 그에 따른 각각의 결과를 반환하기 위해서 쓰인다.
 
 예를 들어 type에 따라 다른 조건과 각각의 결과를 반환하게 하고,
@@ -340,6 +342,23 @@ select case when type="food" then "음식"
        case when type="electronic" then "전자제품"
        else "기타" end   # 구문을 끝낼 때는 " end "를 써줘야 한다.
 from orders;
+```
+
+---
+
+또한 case 문은 상식적이지 않은 데이터를 제외시킬 수 있게끔, 범위를 지정하는 데에도 사용하기 좋다.
+
+예를 들어 2017-10-05 에 오픈해 2020-01-01 에 문을 닫은 곳에서 주문날짜를 확인하는데,
+
+그 외의 날짜 데이터가 나온다면 상식적이지 않을 것이다.
+
+이때 범위를 지정하고 상식적이지 않은 데이터를 범위 안으로 넣으려면 아래와 같다.
+
+```sql
+select order_date,
+       case when order_date<2017-10-05 then 2017-10-05
+            when order_date>2020-01-01 then 2020-01-01
+from orders
 ```
 
 ---
@@ -394,7 +413,7 @@ from(
      select *
      from orders1
      where order_date > "2024-02-06"
-    ) recent_orders
+    ) recent_orders;
 ```
 
 ---
@@ -423,9 +442,67 @@ full join 은 양쪽 테이블의 모든 행을 반환하고 일치하는 행이
 
 ```sql
 select *
-from orders a inner join payments b on a.customer = b.customer
+from orders a inner join payments b on a.customer = b.customer;
 
-# 형식은 (테이블 join유형 join 테이블 on 공통칼럼 = 공통칼럼) 
+# 형식은 (테이블 join유형 join 테이블 on 공통칼럼 = 공통칼럼)
+# 공통칼럼은 결합을 위한 공통된 값이기 때문에 칼럼명은 달라도 괜찮다
 # join 을 사용할 떄 칼럼은 (테이블.칼럼) 형식으로 써야함
 ```
 
+---
+
+## COALESCE
+
+coalesce 는 NULL 값을 다른 값으로 대체할 떄 사용되는 함수이다.
+
+예를 들어 orders 테이블에 payments 테이블을 left join 했을 때,
+
+payments 테이블에 고객 정보가 없을 경우 NULL 값 대신 "Unknown" 이 반환되게 하려면 아래와 같다.
+
+```sql
+select coalesce(b.customer, "Unknown")   #coalesce(칼럼, 대체값)
+from orders a left join payments b on a.customer = b.customer;
+```
+
+---
+
+반대로 결과에 포함시키고 싶지 않은 데이터를 NULL 값으로 처리해 제외시킬 수도 있다.
+
+예를 orders 테이블에서 rating 의 평균을 구하는데 "Not given" 값은 제외시키고 계산하려면 아래와 같다.
+
+```sql
+select avg(if (rating<>"Not given", rating, null))   # "Not given" 값은 제외시키고 평균값 계산
+from (
+       select cast(rating as int)   # rating 칼럼을 숫자형을 변경
+       from orderss
+     ) a
+```
+
+위에 처럼 Query 문 안에서 NULL 값을 필요에 따라 사용할 수도 있다.
+
+---
+
+## Pivot Table
+
+pivot table 은 두 개 이상의 기준으로 데이터가 집계된 표를 말한다.
+
+기본 구조는 아래 그림과 같다.
+
+그림
+
+예를 들어 orders 라는 테이블에서 각 판매자마다 일별 주문량을 피벗테이블로 보기 좋게 만들면 아래와 같다.
+
+```sql
+select seller,
+       max(if(day="01",cnt,0)) "day1",
+       max(if(day="02",cnt,0)) "day2",
+       max(if(day="03",cnt,0)) "day3",
+       ...   # day값이 해당날짜일 경우 cnt값을, 아닐 경우 0 을 가져온다. 그리고 최댓값을 선별하면, 주문이 하나라도 있으면 당연히 0이 아닌 해당시간의 주문량이 선별된다.
+from(
+     select seller,
+              substr(order_date,9,2) day,   # substr으로 일(day)에 해당하는 데이터 선별.
+              count(1) cnt
+     from orders
+    )a   #subQuery 로 계산 결과를 다시 사용
+order by 2 desc;   # day1 주문량이 많은 순으로 정렬
+```
