@@ -494,15 +494,15 @@ pivot table 은 두 개 이상의 기준으로 데이터가 집계된 표를 말
 
 ```sql
 select seller,
-       max(if(day="01",cnt,0)) "day1",
+       max(if(day="01",cnt,0)) "day1",      # day값이 해당날짜일 경우 cnt값을, 아닐 경우 0 을 가져온다. 그리고 최댓값을 선별하게되면, 주문이 하나라도 있으면 당연히 0이 아닌 해당시간의 주문량이 선별되는 원리이다.
        max(if(day="02",cnt,0)) "day2",
        max(if(day="03",cnt,0)) "day3",
-       ...   # day값이 해당날짜일 경우 cnt값을, 아닐 경우 0 을 가져온다. 그리고 최댓값을 선별하면, 주문이 하나라도 있으면 당연히 0이 아닌 해당시간의 주문량이 선별된다.
+       ...
 from(
      select seller,
               substr(order_date,9,2) day,   # substr으로 일(day)에 해당하는 데이터 선별.
               count(1) cnt
      from orders
-    )a   #subQuery 로 계산 결과를 다시 사용
-order by 2 desc;   # day1 주문량이 많은 순으로 정렬
+    )a                                      #subQuery 로 계산 결과를 다시 사용
+order by 2 desc;                            # day1 주문량이 많은 순으로 정렬
 ```
