@@ -553,3 +553,19 @@ from (
 ```
 
 ---
+
+## LIMIT
+
+limit 함수를 사용하면 행의 수를 제한하여 조회할 수 있다.
+
+대량의 데이터를 다룰 때 유용하다.
+
+예를 들어 orders 라는 테이블에서 마지막 5개의 주문만을 조회하려면 아래와 같다.
+
+```sql
+select order_number
+from orders
+order by order_date desc
+limit 5;
+```
+---
