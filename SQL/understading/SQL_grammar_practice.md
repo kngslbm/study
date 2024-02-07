@@ -426,7 +426,8 @@ join 을 사용하면 두 개 이상의 테이블에서 데이터를 함께 검�
 
 다양한 유형의 join 이 있지만 가장 일반적인 유형은 아래 그림을 보면 이해하기 쉽다.
 
-그림
+![sql join 이해를 위한 단순 그림](https://github.com/kngslbm/study/assets/148850117/cfcb21c3-ba17-4474-9ea4-cc6be1588656)
+
 
 left join 또는 right join 은 해당하는 한 쪽 테이블의 모든 행을 반환하고 나머지 한쪽에서 일치하는 행이 있다면 반환한다. 값이 없을 경우 NULL 로 채워진다.
 
@@ -488,7 +489,8 @@ pivot table 은 두 개 이상의 기준으로 데이터가 집계된 표를 말
 
 기본 구조는 아래 그림과 같다.
 
-그림
+<img width="616" alt="pivottable기본구조" src="https://github.com/kngslbm/study/assets/148850117/b219c578-7e3d-4622-b763-edec58bf0df4">
+
 
 예를 들어 orders 라는 테이블에서 각 판매자마다 일별 주문량을 피벗테이블로 보기 좋게 만들면 아래와 같다.
 
