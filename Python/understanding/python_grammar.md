@@ -205,13 +205,19 @@ return 으로 함수를 통해 도출된 값을 돌려줄 수 있다.
 
 ---
 
-#### 추가 연습
+### 슬라이싱
 
-주민등록번호를 입력하면 성별을 출력해주는 함수를 만들어보면,
+슬라이싱은 시퀸스 객체의 일부를 추출할 떄 사용된다.
 
-함수 내 변수 gender 를 만들고 슬라이싱을 활용하여 뒷번호 첫자리를 뽑아낸다.
+슬라이싱의 기본적인 형식은 [start:stop:step] 이다.
 
-조건문으로 알맞은 성별을 출력한다.
+- start 는 슬라이싱을 시작하며 포함시킬 인덱스이다. 기본값은 0 이다.
+
+- stop 은 포함시키지 않고 앞에서 슬라이싱을 멈출 인덱스이다. 기본값은 시퀸스의 길이이다.
+
+- step 은 슬라이싱을 할 때 건너뛸 간격이다. 기본값은 1 이다.
+
+주민등록번호를 입력하면 성별을 알려주는 함수를 만들어보면 아래와 같다.
 
 ```python
 def check_gender(pin):
@@ -220,10 +226,15 @@ def check_gender(pin):
         print("female")
     else:
         print("male")
-
-check_gender("900101-2234567") #output female
-check_gender("200101-3012345") #output male
+check_gender("900101-2234567") # female
+check_gender("200101-3012345") # male
 ```
+
+함수 내 변수 gender 를 만들고, split 메서드로 주민등록번호를 앞뒤로 분할하고 리스트로 만든다.
+
+분할된 리스트에서 뒷번호를 지정하고 슬라이싱을 활용하여 뒷번호 첫자리를 뽑아낸다.
+
+조건문으로 알맞은 성별을 출력한다.
 
 ---
 
@@ -622,7 +633,7 @@ class person:
         self.stamina = self.stamina - 10
         print(f"{self.name} is walking")
         print(f"stamina : {self.stamina}")
-    
+
     def eat(self):
         self.stamina = self.stamina + 10
         print(f"{self.name} is eating")
@@ -641,6 +652,3 @@ person2.eat()
 # curry is eating
 # stamina : 110
 ```
-
-
-
