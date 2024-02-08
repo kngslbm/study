@@ -87,7 +87,7 @@ for i, person in enumerate(people):
         break
 ```
 
-enumerate 로 for문 의 반복을 셀 수 있다.(0부터)
+enumerate 로 객체의 인덱스를 구할 수 있다. 인덱스값이 i 가 [3] 이 되면 멈추게 한 코드이다.
 
 break를 통해서 반복문을 멈출 수 있다.
 
