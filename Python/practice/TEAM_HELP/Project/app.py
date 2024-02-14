@@ -7,8 +7,8 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/member")
-def member():
+@app.route("/leader")
+def leader():
 
     name = "Han"
     profile = "Who i am"
@@ -19,13 +19,28 @@ def member():
         "profile": profile,
         "tag": tag
     }
-    return render_template("member.html", data=context)
+    return render_template("leader.html", data=context)
+
+
+@app.route("/member1")
+def member1():
+
+    name = "Shin"
+    profile = "Who i am"
+    tag = "Member"
+
+    context = {
+        "name": name,
+        "profile": profile,
+        "tag": tag
+    }
+    return render_template("member1.html", data=context)
 
 
 @app.route("/member2")
 def member2():
 
-    name = "Shin"
+    name = "Kim"
     profile = "Who i am"
     tag = "Member"
 
@@ -40,21 +55,6 @@ def member2():
 @app.route("/member3")
 def member3():
 
-    name = "Kim"
-    profile = "Who i am"
-    tag = "Member"
-
-    context = {
-        "name": name,
-        "profile": profile,
-        "tag": tag
-    }
-    return render_template("member3.html", data=context)
-
-
-@app.route("/member4")
-def member4():
-
     name = "Kang"
     profile = "Who i am"
     tag = "Member"
@@ -64,7 +64,7 @@ def member4():
         "profile": profile,
         "tag": tag
     }
-    return render_template("member4.html", data=context)
+    return render_template("member3.html", data=context)
 
 
 if __name__ == "__main__":

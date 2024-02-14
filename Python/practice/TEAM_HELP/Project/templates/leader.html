@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team.HELP</title>
+    <!-- 부트스트랩 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* 스타일링 */
+      .container {
+        display: flex;
+      }
+      .profile {
+        flex: 1;
+        padding: 20px;
+      }
+      .profile img {
+        max-width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .board {
+        flex: 1;
+        padding: 20px;
+      }
+      .button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body data-bs-theme="dark">
+    <nav
+      class="navbar border-bottom border-body d-flex justify-content-center"
+      data-bs-theme="dark"
+    >
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ url_for('leader') }}"
+                  >Han</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ url_for('member1') }}"
+                  >Shin</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ url_for('member2') }}"
+                  >Kim</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ url_for('member3') }}"
+                  >Kang</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </nav>
+    <div class="container">
+      <!-- 왼쪽: 인물 소개 -->
+      <div class="profile">
+        <div class="card mb-3">
+          <img src="..." class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title text-center">{{data.name}}</h5>
+            <p class="card-text text-center">{{data.profile}}</p>
+            <p class="card-text text-center">
+              <small class="text-body-secondary">{{data.tag}}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- HELP 버튼 모달 창 -->
+      <div class="modal" tabindex="-1" id="helpModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Create Help Request</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="helpForm">
+                <div class="mb-3">
+                  <label for="helpTitle" class="form-label">Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="helpTitle"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="helpContent" class="form-label">Content</label>
+                  <textarea
+                    class="form-control"
+                    id="helpContent"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 오른쪽: 도와조 리스트 -->
+      <div class="board">
+        <div class="button-container">
+          <!-- HELP버튼 -->
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#helpModal"
+          >
+            HELP ME
+          </button>
+        </div>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Help me</h5>
+              <small class="text-body-secondary">3 days ago</small>
+            </div>
+            <p class="mb-1">I need help.</p>
+            <div class="d-flex w-100 justify-content-between">
+              <small class="text-body-secondary">answer</small>
+              <button type="button" class="btn btn-outline-light">
+                Helping
+              </button>
+            </div>
+          </a>
+          <!-- 나머지 리스트 아이템들 -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
