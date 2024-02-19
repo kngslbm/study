@@ -23,3 +23,26 @@ for i, number in enumerate(numbers):    # for 인덱스,요소 in enumerate(반�
 ---
 
 ## range
+
+range 는 연속된 정수 시퀸스를 생성하는 함수이다.
+
+주로 for 문과 같이 쓰인다.
+
+range 함수는 리스트나 튜플을 반환하지 않고 range 객체를 반환한다. 
+
+그렇기 때문에 list 함수를 통해 리스트로 변환할 수 있다.
+
+```py
+# 기본 형식 : range(시작숫자, 종료숫자, 증가량) 종료숫자는 필수 입력, 시작숫자 기본값=0, 증가량 기본값=1
+
+# 0부터 9까지의 숫자를 출력
+for i in range(10):
+    print(i)
+
+# 1부터 10까지의 숫자를 리스트로 생성
+numbers = list(range(1, 11))
+
+# 2부터 10까지 2씩 증가하는 숫자를 출력 (2,4,6,8)
+for i in range(2, 10, 2):
+    print(i)
+```
