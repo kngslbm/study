@@ -46,3 +46,106 @@ numbers = list(range(1, 11))
 for i in range(2, 10, 2):
     print(i)
 ```
+
+---
+
+## type
+
+type 은 객체object의 자료형type/class을 반환합니다.
+
+```py
+type(object) # type 함수 기본형식
+```
+
+```py
+integer = 10
+float_ = 1.23
+string = "hello world"
+list_ = [1, 2, 3]
+tuple_ = (1, 2, 3)
+set_ = {1, 2, 3}
+dictionary = {"key": "value"}
+boolean = True
+
+print(type(integer)) # <class 'int'>
+print(type(float_)) # <class 'float'>
+print(type(string)) # <class 'str'>
+print(type(list_)) # <class 'list'>
+print(type(tuple_)) # <class 'tuple'>
+print(type(set_)) # <class 'set'>
+print(type(dictionary)) # <class 'dict'>
+print(type(boolean)) # <class 'bool'>
+```
+
+---
+
+## split
+
+split 은 **문자열**string을 특정 **구분자**separator를 기준으로 나누어 **리스트**list로 반환한다.
+
+
+```py
+string.split(separator, maxsplit) # 기본 형식 
+
+# maxsplit 은 최대 분할 횟수이다. 값을 지정하지 않은면 기본값 -1(모든 가능한 분할 수행)이 적용된다.
+```
+
+---
+
+## join
+
+join 은 **반복가능한 객체**iterable object를 하나의 **문자열**string 로 합쳐 반환한다.
+
+```py
+my_team = ["han", "shin", "kim", "kang"]
+
+result = " and ".join(my_team)
+
+print(result)   # 출력 : "han and shin and kim and kang"
+```
+
+join 은 **문자열 메서드**string method 이기 때문에 만약 대상이 되는 iterable object 의 요소들이 string 이 아니라면, 먼저 string 으로 변환해야 한다.
+```py
+numbers = [1, 2, 3, 4, 5]
+result = ', '.join(map(str, numbers)) # map으로 nubers의 각 요소를 string으로 반환하고 join으로 결합.
+print(result)  # '1, 2, 3, 4, 5'
+```
+
+---
+
+## pprint
+
+pprint 는 "pretty-print" 의 약자로 말그대로 보기좋은 결과를 출력해준다.
+
+주로 대규모 데이터나 리스트, 딕셔너리가 중첩된 구조를 가진 데이터를 확인할 떄 사용되며,
+
+여러 출력 형식 옵션을 제공한다.
+
+```py
+import pprint
+
+data = {
+    'name': 'John',
+    'age': 30,
+    'languages': ['Python', 'JavaScript', 'Java'],
+    'address': {
+        'city': 'New York',
+        'zipcode': '10001'
+    }
+}
+
+
+pprint.pprint(data)
+
+# 출력
+# {'address': {'city': 'New York', 'zipcode': '10001'},
+#  'age': 30,
+#  'languages': ['Python', 'JavaScript', 'Java'],
+#  'name': 'John'}
+```
+
+---
+
+## random
+
+
