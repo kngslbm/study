@@ -426,7 +426,8 @@ join 을 사용하면 두 개 이상의 테이블에서 데이터를 함께 검�
 
 다양한 유형의 join 이 있지만 가장 일반적인 유형은 아래 그림을 보면 이해하기 쉽다.
 
-![sql join 이해를 위한 단순 그림](https://github.com/kngslbm/study/assets/148850117/cfcb21c3-ba17-4474-9ea4-cc6be1588656)
+![sql join 이해를 위한 단순 그림](https://github.com/kngslbm/study/assets/148850117/f48a7d31-1150-4f6b-a166-32095327accc)
+
 
 
 left join 또는 right join 은 해당하는 한 쪽 테이블의 모든 행을 반환하고 나머지 한쪽에서 일치하는 행이 있다면 반환한다. 값이 없을 경우 NULL 로 채워진다.
