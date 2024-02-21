@@ -125,7 +125,143 @@ print(num)   # 9를 출력
 
 <br>
 
+## 조건문 심화
 
+다양한 연산자를 통해 비교 결과를 **불리언** boolean 으로 반환하고,
+
+경우에 따라 실행될 로직을 정의할 수 있다.
+
+아래 몇가지 연산자의 예시가 있다.
+
+```py
+# "in 연산자"는 시퀸스에 값이 포함되어 있는지를 확인한다.
+1 in (1, 2, 3) # True
+4 in [1, 2, 3] # False
+
+
+# 논리 연산자
+if condition1 and condition2:  
+    # 두 조건을 모두 만족할 경우
+elif condition1 or condition2:   
+    # 두 조건 중 하나라도 만족할 경우
+elif not condition:   
+    # 조건의 boolean 반전
+else:   
+    # elif 로 조건을 추가하고, 모든 조건에 해당하지 않을 때 else 를 실행
+```
+조건문을 잘 활용하기 위해서는 boolean 개념에 대한 이해가 필요한다.  
+```py
+# python 에서 False 로 간주하는 값들 (그 외의 모든 값은 True 로 간주한다.)
+False
+None
+0
+0.0 
+"" # 빈 string
+[] # 빈 list
+{} # 빈 dictionary
+set() # 빈 set
+```
+any 또는 all 함수를 활용하면, 여러 조건/요소를 포함한 시퀸스에 대해 최종적인 boolean 을 효율적으로 반환할 수 있다.
+```py
+# any 는 요소들 중 하나라도 True일 경우 True 를 반환
+if any([False, False, False, True, False]):
+    # True가 1개 이상 존재하기 때문에 True
+
+# all 은 요소들이 모두 True일 경우 True 를 반환
+if all([True, True, True, False, True]):
+    # False가 존재하기 때문에 False
+```
+
+<br>
+
+## 함수의 인자와 리턴 타입
+
+함수를 잘 사용하기 위해서는
+
+함수마다 어떤 type 의 인자를 받는지,
+
+또 그렇게 전달받은 값을 다시 어떤 type 으로 리턴하는지, 처럼
+
+함수의 정확한 기능과 올바른 사용법을 이해하는 것이 필수적이다.
+
+아래에 예시 코드를 보면 "list 를 정렬한다"라는 같은 기능을 가진 것처럼 보이는 두 함수가 어떤 사용법 차이를 가졌는지 확인 할 수 있다.
+
+```py
+# sort 는 return data 없이 함수를 호출한 list 자체를 정렬한다
+sample_list = [3, 2, 4, 1, 5]
+sample_list.sort() 
+
+print(sample_list) # [1, 2, 3, 4, 5]
+
+# sorted
+sample_list = [3, 2, 4, 1, 5]
+sorted_list = sorted(sample_list) # 정렬 된 list를 return 한다.
+
+print(sorted_list) # [1, 2, 3, 4, 5]
+
+# 잘못된 방법
+sample_list = [3, 2, 4, 1, 5]
+sorted_list = sample_list.sort() # .sort()의 return data는 None 이다.
+
+print(sorted_list) # None
+```
+
+<br>
+
+무엇보다 함수를 잘 사용하기 위해서는
+
+'docstring' 과 함수의 '구현부 코드'를 자주 들여다보며 함수에 대한 이해를 높이는 것이 중요하다.
+
+<br>
+
+## 패킹과 언패킹
+
+패킹과 언패킹은 python 에서 데이터를 다룰 때 중요한 개념이다.
+
+패킹은 말그대로 여러개의 데이터를 하나의 변수에 묶는 것을 말하며,
+
+언패킹은 패킹된 데이터에서 개별 요소를 추출해 각각의 변수로 분리하는 것을 말한다.
+
+```py
+packed_tuple = 1, 2, 3, 4, 5  # 튜플 패킹 예시
+packed_list = [1, 2, 3, 4, 5]  # 리스트 패킹 예시
+
+a, b, c = (1, 2, 3) # 튜플 언패킹 예시
+x, y, z = [4, 5, 6] # 리스트 언패킹 예시
+
+x, y = y, x # 언패킹을 사용하여 변수 값 교환도 가능하다.
+```
+
+언패킹 시 유용한 연산자로 '*' 과 '**' 이 있는데, 각각 리스트와 튜플을 언패킹할 때 사용된다.
+
+활용 예시는 아래와 같다.
+
+```py
+# 리스트 언패킹
+my_list = [1, 2, 3, 4, 5]
+a, *rest = my_list   # *rest : '*' 이후 모든 요소를 변수 rest에 담는다.
+print(a)    # 1
+print(rest) # [2, 3, 4, 5]
+
+# 가변인자를 받을 떄도 사용된다.
+def my_function(*args): 
+    print(args) 
+
+my_function(1,2,3,4,5)  # 출력 : (1,2,3,4,5)
+
+# 딕셔너리 언패킹
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+my_new_dict = {'d': 4, **my_dict}
+print(my_new_dict)  # {'d': 4, 'a': 1, 'b': 2, 'c': 3}
+
+# 가변인자를 받을 떄도 사용된다.
+def my_function(a, b, **kwargs):
+    print(a)        # 1
+    print(b)        # 2
+    print(kwargs)   # {'c': 3, 'd': 4}
+
+my_function(1, 2, c=3, d=4)
+```
 
 
 
