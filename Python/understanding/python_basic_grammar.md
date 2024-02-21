@@ -375,6 +375,33 @@ for dic in dictionary_list:
 # Graceis 33 years old
 ```
 
+<br>
+특정 에러를 지정하여 에러 종류에 따라 다른 로직으로 처리하는 것도 가능하다.
+
+```py
+# 각 변수 지정에 따른 발생 오류
+number = 'a' # ValueError
+---
+number = 0   # ZeroDivisionError
+---
+number = '1' # Exception 
+
+try:
+    int(number)  
+    10 / number   
+
+except ValueError: # int로 변환하는 과정에서 에러가 발생했을 떄
+    print(f"{number}은(는) 숫자가 아닙니다.")
+    
+except ZeroDivisionError: # 0으로 나누면서 에러가 발생했을 때
+    print("0으로는 나눌수 없습니다.")
+    
+except Exception as e: # 위에서 정의하지 않은 에러가 발생했을 때(추적이 어려워 권장하지 않음)
+    print(f"예상하지 못한 에러가 발생했습니다. error : {e}")
+
+# except 문법 또한 if / elif 와 같이 연달아서 작성이 가능하다.
+```
+
 ---
 
 ## 삼항연산자
