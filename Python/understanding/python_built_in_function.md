@@ -113,5 +113,30 @@ print(result)  # '1, 2, 3, 4, 5'
 
 ---
 
+## bool
+
+bool 은 인자로 전달받은 값을 boolean 으로 변환한다.
+
+```py
+# False
+print(bool(""))
+print(bool(0))
+print(bool([]))
+
+# True
+print(bool("sample"))
+print(bool([1, 2]))
+print(bool(1))
+print(bool(-1))
+```
+
+---
+
+## any & all
+
+any 혹은 all 은 시퀸스의 값을 효율적으로 검사할 수 있다.
 
 
+```py
+예시 코드 작성 예정
+```
