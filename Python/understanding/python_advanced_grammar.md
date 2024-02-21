@@ -263,6 +263,63 @@ def my_function(a, b, **kwargs):
 my_function(1, 2, c=3, d=4)
 ```
 
+<br>
+
+## class 개념 심화
+
+python 에는 특별한 용도로 사용되는 메서드, __init__ 함수가 있다.
+
+__init__ 메서드는 클래스 생성자로 새로운 인스턴스가 생성될 때 자동으로 호출되며,
+
+생성된 객체의 상태를 초기화하고 매개변수를 전달해 초기 상태를  세팅해준다.
+
+```py
+#예제
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+# Person 클래스의 인스턴스 생성
+person1 = Person("Alice", 30)
+
+# person1의 속성 확인
+print(person1.name)  # 출력: Alice
+print(person1.age)   # 출력: 30
+```
+
+<br>
+
+'상속'을 사용하면 class 코드를 더욱 모듈화하고 재사용성을 높일 수 있다. 
+
+이때 기존 class 를 '부모'혹은 'super' class 라고 하고, 새로운 class 를 '자식'혹은 'sub' class 라고 한다.
+
+```py
+class Animal:                 # Animal 클래스 생성 (super class)
+    def __init__(self, name): # 인스턴스 생성시 매개변수를 name에 전달해 초기 세팅을 해준다.
+        self.name = name
+
+    def speak(self):
+        raise NotImplementedError  # sub calss 로 하여금 speak 메서드의 재정의를 강제하고 해당 코드를 직접적으로 사용하는 것을 방지한다.
+
+class Dog(Animal):          # Animal 클래스를 상속받아 Dog 클래스 생성(sub class)
+    def speak(self):        # 상속받은 speak 메서드 재정의 (기존 __init__ 메서드는 유지)
+        print("멍멍")
+
+class Cat(Animal):          # Animal 클래스를 상속받아 Cat 클래스 생성(sub class)
+    def speak(self):        # 상속받은 speak 메서드 재정의 (기존 __init__ 메서드는 유지)
+        print("야옹")
+
+dog1 = Dog('멍멍이')
+cat1 = Cat('야옹이')
+
+dog1.speak()  # 출력 : 멍멍
+cat1.speak()  # 출력 : 야옹
+```
+
+
+
 
 
 
