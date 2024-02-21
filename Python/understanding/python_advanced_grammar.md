@@ -318,6 +318,55 @@ dog1.speak()  # 출력 : 멍멍
 cat1.speak()  # 출력 : 야옹
 ```
 
+<br>
+
+## 정규표현식 Regular Expression (regex)
+
+정규표현식은 문자열의 일정한 패턴을 표현하기 위한 일종의 형식언어이다.
+
+python 에서 정규표현식을 활용해 다양한 작업을 수행할 수 있다.
+
+정규표현식에서 특수한 의미를 가지는 글자를 '메타문자'라고 한다.
+
+예를 들어 휴대전화번호를 입력받는데 입력된 번호가 정확한지 정규표현식을 사용하여 확인하면 아래와 같다.
+
+```py
+import re   #'re' 모듈을 통해 정규표현식을 지원한다.
+
+def valid_phone_number(phone_number):
+    # re.compile 함수로 정규표현식 패턴을 컴파일하여 패턴 객체 생성
+    pattern = re.compile(r'^\d{3}-\d{4}-\d{4}$')
+
+    if pattern.match(phone_number):
+        print("올바른 전화번호 형식입니다.")
+    else:
+        print("잘못된 전화번호 형식입니다.")
+
+def main():
+    phone_number = input("전화번호를 입력하세요 (예: 010-1234-5678): ")
+    valid_phone_number(phone_number)
+
+if __name__ == "__main__":
+    main()
+```
+
+정규표현식을 직접 작성하는 것은 매우 어렵고 힘든 일이다.
+
+그렇기 때문에 미리 짜여진 정규표현식과 그것을 공유하는 커뮤니티가 활성화 되어있다.
+
+필요한 정규표현식을 잘 찾아서 활용하는 것이 중요하다.
+
+```py
+# 그 외 re 모듈의 주요 함수
+re.search(pattern, string)   # string 에서 pattern 과 일치하는 첫 번째 위치를 찾는다.
+re.match(pattern, string)   # string 의 시작부터 pattern 과 일치하는지 확인한다.
+re.findall(pattern, string)   # string 에서 pattern 과 일치하는 모든 부분을 찾는다.
+re.sub(pattern, replacement, string)   #string 에서 pattern 과 일치하는 부분을 replacement 로 대체한다.
+```
+
+
+
+
 
 
 
