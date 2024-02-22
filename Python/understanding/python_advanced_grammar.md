@@ -364,14 +364,130 @@ re.findall(pattern, string)   # string 에서 pattern 과 일치하는 모든 �
 re.sub(pattern, replacement, string)   #string 에서 pattern 과 일치하는 부분을 replacement 로 대체한다.
 ```
 
+<br>
+
+## 파일과 디렉토리 다루기
+
+python 에서 다양한 방법으로 파일과 디렉토리를 다룰 수 있다.
+
+아래는 glob 모듈을 사용하여 파일과 디렉토리를 탐색하는 예시이다.
+
+```py
+from pprint import pprint
+import glob
+
+# ./는 현재 python 파일이 위치한 경로를 의미한다.
+# *은 "모든 문자가 일치한다" 라는 의미.
+# ./*은 현재 디렉토리 내 모든 파일들을 의미한다.
+path = glob.glob("./*")
+pprint(path)
+
+# result output
+"""
+['.\\python_advanced_grammar.md',
+ '.\\python_basic_grammar.md',
+ '.\\python_built_in_function.md',
+ '.\\python_mainly_used_module.md']
+"""
+```
+
+모든 하위 파일까지 탐색할 수도 있다. 아래는 그 예시이다.
+
+```py
+from pprint import pprint
+import glob
+
+# **은 해당 경로 하위 모든 파일을 의미하며, recursive 플래그와 같이 사용한다.
+# recursive를 True로 설정하면 디렉토리 내부의 파일들을 재귀적으로 탐색한다.
+path = glob.glob("../**", recursive=True)
+pprint(path)
+
+# result output
+"""
+['..\\',
+ '..\\practice',
+ '..\\practice\\top100_scraping_practice',
+ '..\\practice\\top100_scraping_practice\\app.py',
+ '..\\practice\\top100_scraping_practice\\templates',
+ '..\\practice\\top100_scraping_practice\\templates\\index.html',
+ '..\\practice\\가장 많은 문제를 맞춘 수포자 구하기.md',
+ '..\\practice\\파이썬 문법 이해를 위한 연습.md',
+ '..\\understanding',
+ '..\\understanding\\python_advanced_grammar.md',
+ '..\\understanding\\python_basic_grammar.md',
+ '..\\understanding\\python_built_in_function.md',
+ '..\\understanding\\python_mainly_used_module.md']
+"""
+```
+
+특정 확장자를 가진 파일들만을 탐색할 수도 있다. 아래는 그 예시이다.
+
+```py
+# *.py와 같이 작성 시 특정 확장자를 가진 파일들만 탐색할 수 있다.
+path = glob.glob("../**/*.py", recursive=True)
+pprint(path)
+
+# result output
+"""
+['..\\practice\\top100_scraping_practice\\app.py']
+"""
+```
+
+<br>
+
+파일을 생성하거나 편집할 때는 with open 문법을 사용할 수 있다.
+
+아래는 그 예시이다.
+
+```py
+# "file.txt" : 파이썬에서 사용할 파일을 지정한다.
+# "w" : 파일을 쓰기 mode 로 연다. 만약 파일이 없다면 새로 생성한다.
+# r, a, 등 다양한 mode가 존재한다.
+# encoding : 파일의 encoding 형식을 지정한다.
+# open 함수를 사용해 파일 열기
+f = open("file.txt", "w", encoding="utf-8")
+f.write("python write test\n")
+# open 함수를 실행하면 python 스크립트가 끝날때 까지 파일이 열려있게 된다.
+# 때문에 파일에 대한 작업이 끝나면 close()를 사용해 파일을 닫아줘야 한다.
+f.close()
 
 
+# with 블록은 구문이 끝날 때 자동으로 리소스가 닫히거나 해제된다.
+# a mode는 기존 내용을 유지한 상태로 추가한다.
+with open("file.txt", "a", encoding="utf-8") as w:
+    w.write("python write test")
 
+# r 은 읽기 mode.
+with open("file.txt", "r", encoding="utf-8") as r:
+    # readlines는 파일의 모든 내용을 list 자료형으로 한번에 읽어들입니다.
+    print(r.readlines())
 
+# result output
+"""
+['python write test\n', 'python write test']
+"""
+```
+아래는 파일을 한 줄 씩 읽어들이는 코드 예시이다.
+```py
+with open("file.txt", "r", encoding="utf-8") as r:
+    while True:
+        # readline은 파일을 한 줄 씩 읽어들인다.
+        line = r.readline()
 
+        # 파일 끝까지 텍스트를 읽어들였다면 반복문을 중지한다.
+        if not line:
+            break
 
+        # 텍스트의 줄바꿈 문자 제거
+        line = line.strip()
+        print(line)
 
-
+# result output
+"""
+python write test
+python write test
+"""
+```
 
 
 
