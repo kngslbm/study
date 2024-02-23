@@ -310,3 +310,38 @@ pprint({
  'status_code': 201}
 """
 ```
+
+---
+
+## json
+
+json 은 python 에서 json 형식의 데이터를 처리하기 위한 내장 모듈이다.
+
+json 데이터(string)를 python 객체(dictionary)로 변환하거나 그 반대의 경우에 사용된다.
+
+주요 함수와 method 예시는 아래와 같다.
+
+```py
+import json
+
+json_string = '{"name": "John", "age": 30, "city": "New York"}'
+python_dict = json.loads(json_string)   # json.load 함수는 'json string' 을 'dictionary' 로 변환한다.
+print(type(python_dict))   
+
+# result output
+"""
+<class 'dict'>
+"""
+```
+```py
+import json
+
+python_dict = {"name": "John", "age": 30, "city": "New York"}
+json_string = json.dumps(python_dict)   # json.dumps 함수는 'dictionary' 을 'json string' 로 변환한다.
+print(type(json_string))
+
+# result output
+"""
+<class 'str'>
+"""
+```
