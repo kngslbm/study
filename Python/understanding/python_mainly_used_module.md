@@ -215,3 +215,98 @@ for i in combinations_with_replacement(sample, 3):
 """
 ```
 
+---
+
+## requests
+
+requests 는 HTTP 요청을 보내는데 사용되는 라이브러리 입니다.
+
+HTTP 요청을 보내고 응답을 처리하는데 간편하고 효율적이며,
+
+그 외에도 여러 장점들로 python 표준 라이브러리인 'urllib' 보다 많은 사용자들에게 선호된다.
+
+requests 는 다양한 HTTP method (GET, POST, PUT, DELETE 등) 를 지원한다.
+
+서버로 부터 받은 응답은 'Response' 객체에 담겨 헤더, 본문, status code 등의 정보를 쉽게 엑세스 할 수 있다.
+
+아래는 request 를 사용한 GET 요청 예시 코드이다.
+
+```py
+import requests   # requests 를 사용하기 위해선 pip install 이 우선적으로 이뤄져야 한다.
+from pprint import pprint   # 응답을 정리해서 출력하기 위해 pprint 사용   
+
+# 통신 할 base url 지정, 여기선 http 통신을 테스트 할 수 있는 웹사이트를 사용했다.
+url = "https://jsonplaceholder.typicode.com/"
+
+# url/users/1 경로에 get 요청
+r = requests.get(f"{url}users/1")
+
+pprint({
+    "contents": r.text,     # 요청에 대해 응답받은 'Response' 객체의  text 정보를 엑세스
+    "status_code": r.status_code,   # 요청에 대해 응답받은 'Response' 객체의 status code 정보를 엑세스
+})
+
+# result output (json 형태로 응답)
+"""
+{'contents': '{\n'
+             '  "id": 1,\n'
+             '  "name": "Leanne Graham",\n'
+             '  "username": "Bret",\n'
+             '  "email": "Sincere@april.biz",\n'
+             '  "address": {\n'
+             '    "street": "Kulas Light",\n'
+             '    "suite": "Apt. 556",\n'
+             '    "city": "Gwenborough",\n'
+             '    "zipcode": "92998-3874",\n'
+             '    "geo": {\n'
+             '      "lat": "-37.3159",\n'
+             '      "lng": "81.1496"\n'
+             '    }\n'
+             '  },\n'
+             '  "phone": "1-770-736-8031 x56442",\n'
+             '  "website": "hildegard.org",\n'
+             '  "company": {\n'
+             '    "name": "Romaguera-Crona",\n'
+             '    "catchPhrase": "Multi-layered client-server neural-net",\n'
+             '    "bs": "harness real-time e-markets"\n'
+             '  }\n'
+             '}',
+ 'status_code': 200}
+"""
+```
+아래는 request 를 사용한 POST 요청 예시 코드이다.
+
+```py
+import requests   # requests 를 사용하기 위해선 pip install 이 우선적으로 이뤄져야 한다.
+from pprint import pprint   # 응답을 정리해서 출력하기 위해 pprint 사용   
+
+# 통신 할 base url 지정, 여기선 http 통신을 테스트 할 수 있는 웹사이트를 사용했다.
+url = "https://jsonplaceholder.typicode.com/"
+
+# 데이터 생성에 사용될 값 지정
+data = {
+    "name": "sparta",
+    "email": "sparta@test.com",
+    "phone": "010-0000-0000",
+}
+
+
+# url/users 경로에 data를 담아 post 요청
+r = requests.post(f"{url}users", data=data)
+
+pprint({
+    "contents": r.text,
+    "status_code": r.status_code,
+})
+
+# result output
+"""
+{'contents': '{\n'
+             '  "name": "sparta",\n'
+             '  "email": "sparta@test.com",\n'
+             '  "phone": "010-0000-0000",\n'
+             '  "id": 11\n'  # 요청하지 않은 정보가 포함되었다? = id 는 서버에서 부여하는 값. 
+             '}',
+ 'status_code': 201}
+"""
+```
