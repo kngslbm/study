@@ -315,7 +315,7 @@ pprint({
 
 ## json
 
-json 은 python 에서 json 형식의 데이터를 처리하기 위한 내장 모듈이다.
+json 모듈은 python 에서 json 형식의 데이터를 처리하기 위한 내장 모듈이다.
 
 json 데이터(string)를 python 객체(dictionary)로 변환하거나 그 반대의 경우에 사용된다.
 
@@ -343,5 +343,96 @@ print(type(json_string))
 # result output
 """
 <class 'str'>
+"""
+```
+
+---
+
+## csv
+
+csv 모듈은 python 에서 csv 형식의 데이터를 처리하기 위한 내장 모듈이다.
+
+csv 데이터(string)를 읽고 쓰는데 사용된다.
+
+csv 데이터를 list 로 변환하여 읽기 위한 코드 예시는 아래와 같다.
+
+```py
+import csv
+
+# 경로와 파일을 지정하여 변수에 담는다. 
+# 작업중이 파일과 같은 디렉토리의 파일은 경로를 지정하지 않고 파일명만 써도 된다.
+csv_path = "C:/Users/강슬범/Desktop/github/study/Python/practice/data_for_practice_csv.csv"
+
+# csv를 list 자료형으로 읽기
+csv_file = open(csv_path, "r", encoding="utf-8") # open 함수 읽기 mode 로 파일을 연다.
+csv_data = csv.reader(csv_file)   # csv.reader 함수는 각 행을 파싱하여 'list의 list' 로 반환한다.
+
+for i in csv_data:
+    print(i)
+
+# 작업이 끝난 csv 파일을 닫는다.
+csv_file.close()
+
+# result output
+"""
+['email', ' age', ' name', ' city']
+['sb@email.com', ' 1998', ' sb', ' seoul']
+['mehtap@email.com', ' 1997', ' mehtap', ' seoul']
+"""
+```
+
+csv 데이터를 dictionary 로 변환하여 읽기 위한 코드 예시는 아래와 같다.
+
+```py
+import csv
+
+csv_path = "C:/Users/강슬범/Desktop/github/study/Python/practice/data_for_practice_csv.csv"
+
+# csv를 dict 자료형으로 읽기
+csv_file = open(csv_path, "r", encoding="utf-8") # open 함수 읽기 mode 로 파일을 연다.
+csv_data = csv.DictReader(csv_file) # csv.DictReader class 는 각 행을 파싱하여 dictionary 로 반환한다.
+
+for i in csv_data:
+    print(i)
+
+csv_file.close()
+
+# result output
+"""
+{'email': 'sb@email.com', ' age': ' 1998', ' name': ' sb', ' city': ' seoul'}
+{'email': 'mehtap@email.com', ' age': ' 1997', ' name': ' mehtap', ' city': ' seoul'}
+"""
+```
+
+csv 파일에 데이터를 쓰기 위한 코드 예시는 아래와 같다.
+```py
+import csv
+
+csv_path = "C:/Users/강슬범/Desktop/github/study/Python/practice/data_for_practice_csv.csv"
+
+# csv 파일을 쓸 때는 newline='' 옵션을 지정해야 중간에 공백 라인이 생기는 것을 방지할 수 있다.
+csv_file = open(csv_path, "a", encoding="utf-8", newline='')
+csv_writer = csv.writer(csv_file)   # csv.writer 함수는 한번에 여러 행을 쓴다. 이때 데이터는 list 나 tuple 로 제공해야 한다.
+
+csv_writer.writerow(["yasemin@email.com", '1993', "yasemin", "basel"]) # csv.writerow 는 한번에 한 행만 쓴다.
+csv_writer.writerow(["ruki@email.com", '2003', "ruki", "basel"])
+
+csv_file.close()
+
+# 다시 csv 파일을 열어 읽어보면
+csv_file = open(csv_path, "r", encoding="utf-8")
+csv_data = csv.reader(csv_file)
+for i in csv_data:
+    print(i)
+
+csv_file.close()
+
+# result output
+"""
+['email', ' age', ' name', ' city']
+['sb@email.com', ' 1998', ' sb', ' seoul']
+['mehtap@email.com', ' 1997', ' mehtap', ' seoul']
+['yasemin@email.com', '1993', 'yasemin', 'basel']   # 추가 된 행
+['ruki@email.com', '2003', 'ruki', 'basel']         # 추가 된 행
 """
 ```
