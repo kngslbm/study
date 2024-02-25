@@ -31,10 +31,8 @@ while yesorno == "y" :
         print(f"correct after {guess_count} tries")
         yesorno = input("try again?(y/n)")
 
-else:
-    print("thanks for enjoying me!")
-
-
+# 게임(루핑) 종료 시 출력
+print("thanks for enjoying me!")
 
 
 
@@ -51,4 +49,57 @@ else:
 """
 
 
+
+import random   # 난수 사용을 위한 random 라이브러리 import.
+
+yesorno = "Y"   # 게임 진행 여부를 담은 변수
+
+# 게임 반복을 위한 while
+while yesorno == "Y" or yesorno == "YES" :             # 대문자로 "Y", "YES" 모두 루프 실행
+
+    guess_number = input("Guess between 1 and 100 :")  # 입력받은 수, 변수에 담아 보관.
+    random_number = random.randint(1, 100)               # 1~100 사이 난수 생성, 변수에 담아 보관.
+    guess_count = 1                                    # 시도 횟수를 담을 변수.
+
+    # 입력값이 0~100 사이 숫자임을 확인
+    if guess_number.isdigit() and 0 < int(guess_number) < 101:   
+
+        # 두 변수가 일치하지 않으면 루핑.
+        while int(guess_number) != random_number:
+
+            if int(guess_number) < random_number:                   # gusess_number가 더 작으면, 
+                print("up")                                         # up 출력.
+                guess_number = input("Guess between 1 and 100 :")   # 재입력.
+                guess_count += 1                                    # 시도 횟수 증가
+                continue                                            # while 함수 재실행
+            
+            elif int(guess_number) > random_number:                 # gusess_number가 더 크면, 
+                print("down")                                       # down 출력.
+                guess_number = input("Guess between 1 and 100 :")   # 재입력.
+                guess_count += 1                                    # 시도 횟수 증가
+                continue                                            # while 함수 재실행
+            
+        # 일치하면 시도 횟수와 게임 진행 여부 재확인
+        else:                  
+            print(f"correct after {guess_count} tries")
+            yorn = input("try again?(y/n)")               
+            yesorno = yorn.upper()    # 소문자 입력도 대문자로 변경.
+    else:
+        print("Just the number between 1 and 100, plz :) ")
+
+# 게임(루핑) 종료 시 출력
+print("thanks for enjoying me!")
+
+
+
+"""
+2차 완성:
+1차 문제점들 모두 보완. 추가로 게임 최고기록을 알려주는 기능 필요.
+시도 횟수 0 이 아닌 1로 시작하는 걸로 수정.(첫 시도도 카운트)
+"Just the number between 1 and 100, plz :) " 출력 시, 다시 "Guess between 1 and 100 :" 출력 안하고 바로 입력값 받고 다시 시작할 수 있으면 좋을 듯.
+문제점을 발견했는데 try-except 안쓰려고 하니 방법이 안떠오른다. 좀 더 고민해보고 안되면 써야할 듯.
+
+문제점
+- 첫 시도 숫자입력 이후 문자 입력 시 오류
+"""
     
