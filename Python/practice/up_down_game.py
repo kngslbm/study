@@ -1,38 +1,38 @@
-# import random   # 난수 사용을 위한 random 라이브러리 import.
+import random   # 난수 사용을 위한 random 라이브러리 import.
 
-# yesorno = "y"   # 게임 진행 여부를 담은 변수
+yesorno = "y"   # 게임 진행 여부를 담은 변수
 
-# # 게임 반복을 위한 while
-# while yesorno == "y" :
+# 게임 반복을 위한 while
+while yesorno == "y" :
 
-#     random_number = random.randint(1, 100)              # 1~100 사이 난수 생성, 변수에 담아 보관.
+    random_number = random.randint(1, 100)              # 1~100 사이 난수 생성, 변수에 담아 보관.
 
-#     guess_number = input("Guess between 1 and 100 :")   # 입력받은 수, 변수에 담아 보관.
+    guess_number = input("Guess between 1 and 100 :")   # 입력받은 수, 변수에 담아 보관.
     
-#     guess_count = 0                                     # 시도 횟수를 담을 변수.    
+    guess_count = 0                                     # 시도 횟수를 담을 변수.    
 
-#     # 두 변수가 일치하지 않으면 루핑.
-#     while int(guess_number) != random_number:   
+    # 두 변수가 일치하지 않으면 루핑.
+    while int(guess_number) != random_number:   
         
-#         if int(guess_number) < random_number:                   # gusess_number가 더 작으면, 
-#             print("up")                                         # up 출력.
-#             guess_number = input("Guess between 1 and 100 :")   # 재입력.
-#             guess_count += 1                                    # 시도 횟수 증가
-#             continue                                            # while 함수 재실행
+        if int(guess_number) < random_number:                   # gusess_number가 더 작으면, 
+            print("up")                                         # up 출력.
+            guess_number = input("Guess between 1 and 100 :")   # 재입력.
+            guess_count += 1                                    # 시도 횟수 증가
+            continue                                            # while 함수 재실행
         
-#         elif int(guess_number) > random_number:                 # gusess_number가 더 크면, 
-#             print("down")                                       # down 출력.
-#             guess_number = input("Guess between 1 and 100 :")   # 재입력.
-#             guess_count += 1                                    # 시도 횟수 증가
-#             continue                                            # while 함수 재실행
+        elif int(guess_number) > random_number:                 # gusess_number가 더 크면, 
+            print("down")                                       # down 출력.
+            guess_number = input("Guess between 1 and 100 :")   # 재입력.
+            guess_count += 1                                    # 시도 횟수 증가
+            continue                                            # while 함수 재실행
 
-#     # 일치하면 시도 횟수 출력과 게임 진행 여부 재확인
-#     else:                  
-#         print(f"correct after {guess_count} tries")
-#         yesorno = input("try again?(y/n)")
+    # 일치하면 시도 횟수 출력과 게임 진행 여부 재확인
+    else:                  
+        print(f"correct after {guess_count} tries")
+        yesorno = input("try again?(y/n)")
 
-# # 게임(루핑) 종료 시 출력
-# print("thanks for enjoying me!")
+# 게임(루핑) 종료 시 출력
+print("thanks for enjoying me!")
 
 
 
@@ -48,7 +48,7 @@
 - 게임 진행 여부 재확인 시 'Y' 나 'yes' 도 재진행 의사로 간주해야함.
 """
 
-
+#------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 import random   # 난수 사용을 위한 random 라이브러리 import.
 
@@ -103,7 +103,7 @@ print("thanks for enjoying me!")
 - 첫 시도 숫자입력 이후 문자 입력 시 오류
 """
     
-
+#------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 import random   # 난수 사용을 위한 random 라이브러리 import.
 
@@ -125,12 +125,10 @@ while yesorno.upper() == "Y" or yesorno.upper() == "YES":   # .upper() 함수로
             continue 
         
         elif int(guess_number) < random_number:                   # gusess_number가 더 작으면, 
-            print("up")                                         # up 출력.
-            print(random_number)                                          
+            print("up")                                         # up 출력.      
         
         elif int(guess_number) > random_number:                 # gusess_number가 더 크면, 
-            print("down")                                       # down 출력.
-            print(random_number)                                      
+            print("down")                                       # down 출력.                                  
             
         # 일치하면 시도 횟수 출력하고 루프 탈출
         else:                 
@@ -142,6 +140,8 @@ while yesorno.upper() == "Y" or yesorno.upper() == "YES":   # .upper() 함수로
 
 # 게임(루핑) 종료 시 출력
 print("thanks for enjoying me!")
+
+
 
 """
 3차 수정:
