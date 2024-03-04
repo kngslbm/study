@@ -113,6 +113,7 @@ split 은 **문자열**string을 특정 **구분자**separator를 기준으로 �
 ```py
 string.split(separator, maxsplit) # 기본 형식 
 
+# separator 특정 구분자 기준으로 요소를 나눈다. 값을 지정하지 않으면 기본값은 공백을 기준으로 나눈다.
 # maxsplit 은 최대 분할 횟수이다. 값을 지정하지 않은면 기본값 -1(모든 가능한 분할 수행)이 적용된다.
 ```
 
