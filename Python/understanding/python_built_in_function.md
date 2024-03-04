@@ -51,9 +51,33 @@ for i in range(2, 10, 2):
 
 ---
 
+## len
+
+len 은 문자열의 글자 수 or 시퀸스 객체의 요소 갯수를 반환한다.
+
+```py
+# 기본 형식
+len(string)     # 글자 수 반환
+len(secuence)   # 요소 갯수 반환
+```
+
+
+
+---
+
+## count
+
+count 는 시퀸스 객체에서 특정 요소의 등장 횟수를 반환한다.
+
+```py
+secuence.count(특정요소)  # 기본 형식
+```
+
+
+---
 ## type
 
-type 은 객체object의 자료형type/class을 반환합니다.
+type 은 객체object의 자료형type/class을 반환한다.
 
 ```py
 type(object) # type 함수 기본형식
