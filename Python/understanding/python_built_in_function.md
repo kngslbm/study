@@ -159,6 +159,25 @@ string.split(separator, maxsplit) # 기본 형식
 
 ---
 
+## [ : : ]
+
+python 의 슬라이싱 연산자이다.
+
+```py
+[start:stop:step]   # 기본 형식
+```
+start: 슬라이싱을 시작할 위치. 이 위치의 요소는 포함되며 기본값은 처음(inedex 0).
+
+stop: 슬라이싱을 끝낼 위치. 이 위치의 요소는 포함되지 않으며 기본값은 시퀀스의 끝.
+
+step: 슬라이스의 간격. 기본값은 1.
+
+
+
+
+
+---
+
 ## join
 
 join 은 **반복가능한 객체**iterable object를 하나의 **문자열**string 로 합쳐 반환한다.
