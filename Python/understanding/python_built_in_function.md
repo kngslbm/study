@@ -75,6 +75,46 @@ secuence.count(특정요소)  # 기본 형식
 
 
 ---
+
+## sort
+
+sort 는 list의 Method 이다.
+
+전달받은 리스트를 정렬한다. 기존의 리스트를 정렬하여 변경하기 때문에 따로 값을 반환하지 않는다.
+
+```py
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+
+# 리스트를 오름차순으로 정렬합니다.
+numbers.sort()  # 기본값은 reverse=False
+print(numbers)  # 출력: [1, 1, 2, 3, 4, 5, 5, 6, 9]
+
+# 리스트를 내림차순으로 정렬합니다.
+numbers.sort(reverse=True)
+print(numbers)  # 출력: [9, 6, 5, 5, 4, 3, 2, 1, 1]
+```
+string 은 알파벳 순으로 정렬한다. 
+
+sort 메서드의 시간복잡도는 O(n log n) 이다.
+
+
+---
+
+## index
+
+index 는 list의 Method 이다.
+
+전달받은 특정 요소의 index 값을 반환한다.
+
+첫번 째로 일치하는 index 를 반환하며, 일치하지 않을 시 'ValueError' 를 발생시킨다.
+
+```py
+list.index(특정 요소)   # 기본 형식
+```
+
+
+---
+
 ## type
 
 type 은 객체object의 자료형type/class을 반환한다.
