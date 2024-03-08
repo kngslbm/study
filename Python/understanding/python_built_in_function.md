@@ -193,6 +193,22 @@ step: 슬라이스의 간격. 기본값은 1.
 
 ---
 
+## replace
+
+replace 는 문자열의 특정 부분을 다른 문자로 변경하여 새로운 문자열을 반환한다.
+
+```py
+string.replace(old, new, count)  # 기본 형식
+```
+
+old : new 로 변경할 부분
+
+new : 변경할 문자
+
+count : 대체할 최대 횟수. 기본값은 가능한 모든 경우를 대체
+
+---
+
 ## join
 
 join 은 **반복가능한 객체**iterable object를 하나의 **문자열**string 로 합쳐 반환한다.
