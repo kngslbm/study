@@ -71,3 +71,14 @@ html {
     background-image: url("./post4.png");
     color: #000000;
 }
+
+.done::after {
+    content: "";
+    width: 65px;
+    height: 70px;
+    background-image: url("./check.png");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 25%;
+}
