@@ -1,0 +1,73 @@
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg {
+    background-color: white;
+}
+
+.title {
+    margin-top: 50px;
+    color: #000000;
+}
+
+.msg {
+    margin: -10px 0 30px;
+    color: black;
+}
+
+.postit {
+    width: 160px;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    margin: 8px;
+    position: relative;
+
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    word-break: keep-all;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap {
+    flex-wrap: wrap;
+    width: 400px;
+}
+
+.post1 {
+    background-image: url("./post1.png");
+    color: #000000;
+}
+
+.post2 {
+    background-image: url("./post2.png");
+    color: #000000;
+}
+
+.post3 {
+    background-image: url("./post3.png");
+    color: #000000;
+}
+
+.post4 {
+    background-image: url("./post4.png");
+    color: #000000;
+}
