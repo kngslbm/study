@@ -1,3 +1,13 @@
+@keyframes scale-out {
+    0% {
+        transform: scale(1.4);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 html {
     display: flex;
     flex-direction: column;
@@ -20,8 +30,9 @@ html {
 }
 
 .postit {
-    width: 160px;
-    height: 160px;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
     background-size: cover;
     background-position: center;
     margin: 8px;
@@ -49,7 +60,7 @@ html {
 
 .wrap {
     flex-wrap: wrap;
-    width: 400px;
+    width: 800px;
 }
 
 .post1 {
@@ -74,11 +85,45 @@ html {
 
 .done::after {
     content: "";
-    width: 65px;
+    width: 70px;
     height: 70px;
     background-image: url("./check.png");
     background-size: cover;
     background-position: center;
     position: absolute;
-    top: 25%;
+    right: 27%;
+    top: 28%;
+
+    animation: scale-out 0.1s ease-in-out 1;
+}
+
+.btn1 {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-weight: bold;
+}
+
+.input-container {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+#todoInput {
+    width: 90px;
+}
+
+#addButton {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+#deleteButton {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
 }
