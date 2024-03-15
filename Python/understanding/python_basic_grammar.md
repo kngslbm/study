@@ -682,3 +682,15 @@ person2.eat()
 
 ## 그 외
 
+문자열 순회하며 대소문자 여부 판별
+```py
+s = "Hello World"
+upper_case_chars = []
+lower_case_chars = []
+
+for char in s:
+    if char.isupper():
+        upper_case_chars.append(char)
+    elif char.islower():
+        lower_case_chars.append(char)
+```
