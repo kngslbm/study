@@ -1,3 +1,13 @@
+## zip
+
+zip 은 여러 반복가능한 객체를 병렬 순회할 수 있다.
+
+여러개의 iterable 객체를 전달받아 각 객체에서 하나의 요소 씩 꺼내 여러 iterator 를 생성한다.
+
+```py
+for item1, item2 in zip(list1, list2):
+```
+
 ## enumerate
 
 enumerate 는 반복가능한 iterable 객체를 받아 iterator 를 반환한다.
