@@ -48,6 +48,6 @@ class Linked_list:
         while node.next:
             node = node.next
             
-        node.pop() # Node class 객체라서 안되겠지?
+        node.pop() # node는 'Node class 객체'라서 안되겠지?
         # 링크드 리스트 삭제 구현 학습 필요
 ```
