@@ -694,3 +694,10 @@ for char in s:
     elif char.islower():
         lower_case_chars.append(char)
 ```
+
+문자열도 반복가능한객체이다. 글자마다 각각의 객체로 반복 가능.
+예를 들어 map 함수를 활용한 아래와 같은 코드에서 문자열도 반복가능한 객체이기 때문에 모든 글자에 int 함수가 적용된다.
+```py
+num_str = "123456789"
+sum(map(int, num_str))   # 각 숫자들을 합한 값 45 출력
+```
