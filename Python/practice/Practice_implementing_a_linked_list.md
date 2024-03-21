@@ -51,3 +51,32 @@ class Linked_list:
         node.pop() # node는 'Node class 객체'라서 안되겠지?
         # 링크드 리스트 삭제 구현 학습 필요
 ```
+
+
+2차시도
+
+head 뿐만 아니라 tail 도 구현해보고
+
+```py
+# Node class 선언
+class Node:
+    def __init__(self, value, next):
+        self.value = value    # 입력받는 값과 포인터 변수 지정.
+        self.next = next
+
+# Linked list class 선언
+
+
+class Linked_list:
+    def __init__(self):
+        self.head = None      # head 와 tail 변수 생성, 값은 아직 None.
+        self.tail = None
+
+    # 리스트의 끝에 삽입하는 Method
+    def append(self, value):
+        # 아직 head가 없으면 새로운 Node 를 head 이자 tail 로 지정.
+        if not self.head:
+            self.head = Node(value, None)
+            self.tail = self.head
+            return
+```
