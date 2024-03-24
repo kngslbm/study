@@ -293,7 +293,18 @@ any 혹은 all 은 시퀸스의 값을 효율적으로 검사할 수 있다.
 
 
 ```py
-예시 코드 작성 예정
+# and : 모든 조건이 True 일 때만 True 를 반환하고, 그렇지 않으면 Fals를 반환
+a = True
+b = False
+result = a and b
+print(result)  # 출력: False
+```
+
+```py
+# any : 시퀸스 중 하나라도 True 라면 True 반환. 그렇지 않으면 Fals
+nums = [0, 1, 2, 3, 4]
+result = any(nums)
+print(result)  # 출력: True
 ```
 
 ---
