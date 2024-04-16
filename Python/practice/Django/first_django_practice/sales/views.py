@@ -6,3 +6,10 @@ def index(request):
         'name': 'slbm',
     }
     return render(request, 'index.html', context)
+
+
+def profile(request, username):
+    context = {
+        'username': username,
+    }
+    return render(request, 'profile.html', context)

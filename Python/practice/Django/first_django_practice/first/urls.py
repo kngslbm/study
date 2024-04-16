@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from sales import views
+from django.urls.conf import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', include("sales.urls")),
 ]
