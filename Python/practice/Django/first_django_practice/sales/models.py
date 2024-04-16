@@ -3,10 +3,12 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    pass
+    def __str__(self):
+        return self.username
 
 
 class Sale(models.Model):
-    name = models.CharField(max_length=30)
-    age = models.IntegerField(default=0)
-    person = models.ForeignKey("User", on_delete=models.CASCADE)
+    stuff = models.CharField(max_length=50)
+    price = models.IntegerField(default=0)
+    content = models.TextField(max_length=500)
+    saller = models.ForeignKey("User", on_delete=models.CASCADE)
