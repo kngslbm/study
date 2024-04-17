@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>sale registration</h3>
+
+<form action="{% url 'create' %}" method="POST">
+    {% csrf_token %}
+    <label for="stuff">title</label>
+    <input type="text" name="stuff" id="stuff">
+
+    <label for="price">price</label>
+    <input type="integer" name="price" id="price">
+
+    <label for="content">content</label>
+    <textarea name="content" id="content"></textarea>
+
+    <button type="submit">save</button>
+</form>
+
+{% endblock content %}

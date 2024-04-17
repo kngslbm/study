@@ -2,4 +2,16 @@
 
 {% block content %}
 
+<a href="{% url 'new' %}">sele registration</a>
+
+<h1>for sale now!</h1>
+
+{% for sale in sales %}
+<a href="{% url 'detail' sale.id %}">
+    <div>{{ sale.stuff }}</div>
+    <div>{{ sale.price }}</div>
+</a>
+<br>
+{% endfor %}
+
 {% endblock content %}

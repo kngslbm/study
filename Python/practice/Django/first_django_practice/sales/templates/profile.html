@@ -2,6 +2,17 @@
 
 {% block content %}
 
-<h3>{{ username }}</h3>
+<h3>{{ user.username }}</h3>
+
+{% for sale in sales %}
+<a href="{% url 'detail' sale.id %}">
+    <div>{{ sale.stuff }}</div>
+    <div>{{ sale.price }}</div>
+</a>
+<div>{{ sale.saller }}</div>
+<br>
+{% endfor %}
+
+<a href="{{ request.META.HTTP_REFERER }}">Go back</a>
 
 {% endblock content %}

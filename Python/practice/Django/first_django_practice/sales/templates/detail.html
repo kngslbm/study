@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="{% url 'profile' sale.user %}">{{ sale.user }}</a>
+<h3>{{ sale.stuff }}</h3>
+<p>{{ sale.price }}</p>
+<p>{{ sale.content }}</p>
+
+<a href="{% url 'index' %}">Go back</a>
+{% endblock content %}
