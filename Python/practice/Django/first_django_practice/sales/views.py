@@ -2,7 +2,23 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User, Sale
-from . forms import SaleForm
+from .forms import SaleForm, UserCreationForm
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'sales/signup.html', context)
 
 
 def login(request):
@@ -23,6 +39,15 @@ def login(request):
 def logout(request):
     if request.method == 'POST':
         auth_logout(request)
+    return redirect('index')
+
+
+def userDelete(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            request.user.delete()
+            auth_logout(request)
+
     return redirect('index')
 
 
