@@ -1,6 +1,29 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth.forms import AuthenticationForm
 from .models import User, Sale
 from . forms import SaleForm
+
+
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            return redirect('index')
+    else:
+        form = AuthenticationForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'sales/login.html', context)
+
+
+def logout(request):
+    if request.method == 'POST':
+        auth_logout(request)
+    return redirect('index')
 
 
 def index(request):

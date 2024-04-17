@@ -1,4 +1,12 @@
 <nav>
     <a href="{% url 'index' %}">My first django practice to make market</a>
+
     <p>{{ name }}</p>
+
+    <a href="{% url 'login' %}">login</a>
+
+    <form action="{% url 'logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="logout">
+    </form>
 </nav>
