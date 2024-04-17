@@ -8,7 +8,7 @@ def index(request):
     context = {
         'sales': sales,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'sales/index.html', context)
 
 
 def profile(request, username):
@@ -18,7 +18,7 @@ def profile(request, username):
         'user': user,
         'sales': sales,
     }
-    return render(request, 'profile.html', context)
+    return render(request, 'sales/profile.html', context)
 
 
 def detail(request, pk):
@@ -26,7 +26,7 @@ def detail(request, pk):
     context = {
         'sale': sale,
     }
-    return render(request, 'detail.html', context)
+    return render(request, 'sales/detail.html', context)
 
 
 def create(request):
@@ -37,13 +37,14 @@ def create(request):
             sale.user = request.user
             sale.save()
             return redirect('detail', sale.id)
+        return redirect('index')
     else:
         form = SaleForm()
 
     context = {
         'form': form,
     }
-    return render(request, 'new.html', context)
+    return render(request, 'sales/new.html', context)
 
 
 def edit(request, pk):
@@ -51,7 +52,7 @@ def edit(request, pk):
     context = {
         'sale': sale,
     }
-    return render(request, 'edit.html', context)
+    return render(request, 'sales/edit.html', context)
 
 
 def update(request, pk):
