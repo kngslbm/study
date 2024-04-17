@@ -43,3 +43,29 @@ def create(request):
         sale.save()
 
         return redirect('detail', pk=sale.id)
+
+
+def edit(request, pk):
+    sale = Sale.objects.get(pk=pk)
+    context = {
+        'sale': sale,
+    }
+    return render(request, 'edit.html', context)
+
+
+def update(request, pk):
+    if request.method == 'POST':
+        sale = Sale.objects.get(pk=pk)
+        sale.stuff = request.POST.get('stuff')
+        sale.price = request.POST.get('price')
+        sale.content = request.POST.get('content')
+        sale.save()
+        return redirect('detail', pk=sale.id)
+
+
+def delete(request, pk):
+    sale = Sale.objects.get(pk=pk)
+    if request.method == 'POST':
+        sale.delete()
+        return redirect('index')
+    return redirect('detail', pk=sale.id)

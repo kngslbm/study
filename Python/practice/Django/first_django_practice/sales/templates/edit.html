@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>sale registration</h3>
+<h3>edit</h3>
 
-<form action="{% url 'create' %}" method="POST">
+<form action="{% url 'update' sale.pk %}" method="POST">
     {% csrf_token %}
     <label for="stuff">title</label>
-    <input type="text" name="stuff" id="stuff">
+    <input type="text" name="stuff" id="stuff" value={{sale.stuff}}>
 
     <br>
 
     <label for="price">price</label>
-    <input type="integer" name="price" id="price">
+    <input type="integer" name="price" id="price" value={{sale.price}}>
 
     <br>
 
     <label for="content">content</label>
-    <textarea name="content" id="content"></textarea>
+    <textarea name="content" id="content">{{sale.content}}</textarea>
 
     <br>
 
