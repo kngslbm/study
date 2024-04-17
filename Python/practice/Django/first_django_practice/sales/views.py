@@ -39,6 +39,7 @@ def create(request):
         content = request.POST.get('content')
         user = request.user
 
-        Sale.objects.create(stuff=stuff, price=price,
-                            content=content, user=user)
-        return redirect('index')
+        sale = Sale(stuff=stuff, price=price, content=content, user=user)
+        sale.save()
+
+        return redirect('detail', pk=sale.id)
