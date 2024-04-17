@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User, Sale
+from . forms import SaleForm
 
 
 def index(request):
@@ -28,21 +29,21 @@ def detail(request, pk):
     return render(request, 'detail.html', context)
 
 
-def new(request):
-    return render(request, 'new.html')
-
-
 def create(request):
     if request.method == 'POST':
-        stuff = request.POST.get('stuff')
-        price = request.POST.get('price')
-        content = request.POST.get('content')
-        user = request.user
+        form = SaleForm(request.POST)
+        if form.is_valid():
+            sale = form.save(commit=False)
+            sale.user = request.user
+            sale.save()
+            return redirect('detail', sale.id)
+    else:
+        form = SaleForm()
 
-        sale = Sale(stuff=stuff, price=price, content=content, user=user)
-        sale.save()
-
-        return redirect('detail', pk=sale.id)
+    context = {
+        'form': form,
+    }
+    return render(request, 'new.html', context)
 
 
 def edit(request, pk):

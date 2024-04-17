@@ -5,22 +5,8 @@
 
 <form action="{% url 'create' %}" method="POST">
     {% csrf_token %}
-    <label for="stuff">title</label>
-    <input type="text" name="stuff" id="stuff">
-
-    <br>
-
-    <label for="price">price</label>
-    <input type="integer" name="price" id="price">
-
-    <br>
-
-    <label for="content">content</label>
-    <textarea name="content" id="content"></textarea>
-
-    <br>
-
-    <button type="submit">save</button>
+    {{ form.as_p }}
+    <button type="submit">register</button>
 </form>
 
 <a href="{{ request.META.HTTP_REFERER }}">Go back</a>
